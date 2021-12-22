@@ -1,0 +1,50 @@
+@extends('layouts.main')
+@section('content')
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-3">
+            @if(session()->has('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
+            @if(session()->has('loginError'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('loginError') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
+            <main class="form-signin">
+                <h1 class="h3 mb-3 fw-normal text-center">Login :</h1>
+                <form action='/login' method='post'>
+                    @csrf
+                    {{-- csrf = pengamanan --}}
+                    <div class="form-floating">
+                        {{-- autofocus=set langsung aktif --}}
+                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
+                        id="email" placeholder="Email" value = '{{ old('email') }}' required>
+                        <label for="email">Email address</label>
+                        @error('email')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    <div class="form-floating mb-3">
+                        <input type="password" name="password" class="form-control" id="password
+                        @error('email') is-invalid @enderror" placeholder="Password"  required>
+                            <label for="password">Password</label>
+                            @error('password')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+                </form>
+                <small class='d-block text-center mt-2'><a class='text-decoration-none' href="/forgot-password">Forgot Password ?</a></small>
+                <small class='d-block text-center mt-1'>Not Registered ?</small>
+                <small class='d-block text-center mt-1'><a class='text-decoration-none' href="/register">Register Now!</a></small>
+                </main>
+        </div>
+    </div>
+@endsection
