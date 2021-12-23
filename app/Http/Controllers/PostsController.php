@@ -53,15 +53,14 @@ class PostsController extends Controller
     }
 
     public function update($id,Request $request){
-        dd($id);
         $validatedData = $request->validate
         ([
             'judul'=>['required','min:3','max:32','unique:posts,judul'],
             'slug'=>'required|unique:posts,slug',
             'isi'=>'required|min:6|max:255'
         ]);
-
+        $validatedData->id = $id;
         posts::where('id','=', $validatedData->id)->update($validatedData);
-        return redirect('/mypost')->with('success','Edit Berhasil');
+        // return redirect('/mypost')->with('success','Edit Berhasil');
     }
 }
