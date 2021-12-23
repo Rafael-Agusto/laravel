@@ -42,10 +42,6 @@ class RegisterController extends Controller
             $mail->to($email, 'no-reply')->subject('Information Account');            
             $mail->from('111201911661@mhs.dinus.ac.id', 'testlaravel');
         });
-        // dd($test);
-        // if (Mail::failures()){
-        //     dd('gagal');
-        // }
 
         User::create($validatedData);
 

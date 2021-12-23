@@ -13,7 +13,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function index(){
-        return view('index');
+        return redirect('/login');
     }
 
     public function forgot() {

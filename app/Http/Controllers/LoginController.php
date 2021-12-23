@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -17,13 +18,12 @@ class LoginController extends Controller
 
         $credentials = $request->validate([
             'email' => 'required|email',
-             // dns bisa dihapus supaya email tidak terlalu ketat
             'password' => 'required'
         ]);
 
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
-            return redirect()->intended('/');
+            return redirect()->intended('/posts');
         }
 
         return back()->with('loginError', 'Login gagal, mohon cek kembali email dan password anda!');
@@ -32,7 +32,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Authentication passed...
-            return redirect()->intended('dashboard');
+            return redirect()->intended('/login');
         }
     }
 
