@@ -6,10 +6,26 @@
     <div class="card-group">
         <div class="card">
             <div class="card-body">
-                <small><button><i class="bi bi-pencil"></i></button></small>
-                <small><button action='/delete' method='post'><i class="bi bi-eraser"></i></button></small>
-                <h5 class="card-title">{{ $post->judul }}</h5>
-                <h4>{{ $post->isi }}</h4>
+                <small>
+                    <form action="mypost/edit" method="post">
+                        @csrf
+                        <input type="hidden" value="{{ $post->slug }}" name="slug">
+                        <button type="submit">
+                        <i class="bi bi-eraser">edit</i>
+                        </button>
+                    </form>
+                </small>
+                <small>
+                    <form action="mypost/delete" method="post">
+                        @csrf
+                        <input type="hidden" value="{{ $post->id }}" name="id">
+                        <button type="submit">
+                        <i class="bi bi-eraser">delete</i>
+                        </button>
+                    </form>
+                </small>
+                <h5 class="card-title" name="judul">{{ $post->judul }}</h5>
+                <h4 name="isi">{{ $post->isi }}</h4>
             </div>
         </div>
     </div>

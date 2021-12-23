@@ -29,9 +29,11 @@ Route::get('/posts', 'PostsController@index');
 Route::get('/posts/create', 'PostsController@formcreate')->middleware('auth');
 Route::post('/posts/create', 'PostsController@create')->middleware('auth');
 
-Route::get('/posts/mypost', 'PostsController@mypost')->middleware('auth');
-Route::post('/posts/mypost', 'PostsController@destroy')->middleware('auth');
+Route::get('/mypost', 'PostsController@mypost')->middleware('auth');
+Route::post('/mypost/delete', 'PostsController@destroy')->middleware('auth');
+
+Route::post('/mypost/edit', 'PostsController@edit')->middleware('auth');
+Route::patch('mypostupdate/{id}', 'PostsController@update')->middleware('auth');
 
 Route::get('/dashboard', 'DashboardController@index')->middleware('auth');
 // Route::resource('dashboard','DashboardController')->middleware('auth');
-

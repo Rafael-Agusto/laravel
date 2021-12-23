@@ -1,15 +1,5 @@
 @extends('layouts.main')
 @section('container')
-@if(Auth::check())
-<a class="nav-link text-primary" href="/posts/create" method="post">
-    Create Post
-    <i class="bi bi-box-arrow-right"></i>
-</a>
-<a class="nav-link text-primary" href="/posts/mypost">
-    My Post
-    <i class="bi bi-box-arrow-in-right"></i>
-</a>
-@endif
 @foreach ($posts as $post)
 <div class="mx-4 my-2 col-md-10 content-center ">
     <div class="card-group">

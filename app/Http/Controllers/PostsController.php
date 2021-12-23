@@ -35,32 +35,33 @@ class PostsController extends Controller
         $validatedData['user_id']=auth()->user()->id;
         Posts::create($validatedData);
         $request->session()->flash('success', 'Post Berhasil dibuat');
-        return redirect('/posts');
+        return redirect('/mypost');
     }
 
-    public function destroy(posts $posts)
-    {
-        posts::destroy($posts->id);
-        return redirect('/posts/mypost')->with('success','Post Berhasil Dibuang!');
+    public function destroy(Request $request)
+    {   
+        $posts = posts::find($request->id);
+        $posts -> delete();
+        return redirect('/mypost')->with('success','Post Berhasil Dibuang!');
     }
     
-    public function update(Request $request, posts $posts){
-        $rules = $request->validate
+    public function edit(Request $request){
+        $posts = posts::where('slug','=', $request->slug)->first();
+        return view('posts/update',[
+            'posts'=> $posts
+        ]);
+    }
+
+    public function update($id,Request $request){
+        dd($id);
+        $validatedData = $request->validate
         ([
             'judul'=>['required','min:3','max:32','unique:posts,judul'],
             'slug'=>'required|unique:posts,slug',
             'isi'=>'required|min:6|max:255'
         ]);
 
-        if($request->slug != $post->slug){
-            $rules['slug']='required|unique:post';
-        }
-
-        $validatedData = $request->validate($rules);
-
-        $validatedData['user_id']=auth()->user()->id;
-
-        post::where('id', $posts->id)->update('$validateData');
-        return redirect('/posts/mypost')->with('success','Edit Berhasil');
+        posts::where('id','=', $validatedData->id)->update($validatedData);
+        return redirect('/mypost')->with('success','Edit Berhasil');
     }
 }
