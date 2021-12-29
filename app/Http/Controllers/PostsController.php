@@ -39,28 +39,27 @@ class PostsController extends Controller
     }
 
     public function destroy(Request $request)
-    {   
+    {
         $posts = posts::find($request->id);
         $posts -> delete();
         return redirect('/mypost')->with('success','Post Berhasil Dibuang!');
     }
-    
+
     public function edit(Request $request){
-        $posts = posts::where('slug','=', $request->slug)->first();
+        $posts = posts::where('id','=', $request->id)->first();
         return view('posts/update',[
             'posts'=> $posts
         ]);
     }
 
-    public function update($id,Request $request){
+    public function update(Request $request){
         $validatedData = $request->validate
         ([
             'judul'=>['required','min:3','max:32','unique:posts,judul'],
-            'slug'=>'required|unique:posts,slug',
+            'slug'=>'required',
             'isi'=>'required|min:6|max:255'
         ]);
-        $validatedData->id = $id;
-        posts::where('id','=', $validatedData->id)->update($validatedData);
-        // return redirect('/mypost')->with('success','Edit Berhasil');
+        posts::where('slug','=', $validatedData['slug'])->update($validatedData);
+        return redirect('/mypost')->with('success','Edit Berhasil');
     }
 }

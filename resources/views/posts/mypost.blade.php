@@ -7,9 +7,9 @@
         <div class="card">
             <div class="card-body">
                 <small>
-                    <form action="mypost/edit" method="post">
+                    <form action="mypost/edit/{{ $post->id }}" method="get">
                         @csrf
-                        <input type="hidden" value="{{ $post->slug }}" name="slug">
+                        <input type="hidden" value="{{ $post->id }}" name="id">
                         <button type="submit">
                         <i class="bi bi-eraser">edit</i>
                         </button>

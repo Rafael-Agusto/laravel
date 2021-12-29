@@ -10,8 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
 Route::get('/', 'LoginController@index');
 
 Route::get('/login', 'LoginController@index')->middleware('guest');
@@ -32,8 +30,9 @@ Route::post('/posts/create', 'PostsController@create')->middleware('auth');
 Route::get('/mypost', 'PostsController@mypost')->middleware('auth');
 Route::post('/mypost/delete', 'PostsController@destroy')->middleware('auth');
 
-Route::post('/mypost/edit', 'PostsController@edit')->middleware('auth');
-Route::patch('mypostupdate/{id}', 'PostsController@update')->middleware('auth');
+// Route::resource('/editpost', 'PostsController');
+
+Route::get('/mypost/edit/{id}', 'PostsController@edit')->middleware('auth');
+Route::post('/mypost/edit/{id}', 'PostsController@update')->middleware('auth');
 
 Route::get('/dashboard', 'DashboardController@index')->middleware('auth');
-// Route::resource('dashboard','DashboardController')->middleware('auth');

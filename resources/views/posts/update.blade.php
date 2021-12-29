@@ -1,11 +1,8 @@
 @extends('layouts.main')
 @section('container')
 
-<form action='{{ url('mypostupdate',$posts->id) }}' method='POST'>
+<form action='{{ url('mypost/edit',$posts->id) }}' method='POST'>
     @csrf
-    @method('PATCH')
-    
-    {{-- csrf = pengamanan --}}
     <p class="mt-5">Judul :</p>
     <div class="form-floating">
         {{-- autofocus=set langsung aktif --}}
@@ -21,7 +18,7 @@
     <p class="mt-2">Slug :</p>
     <div class="form-floating">
         <input type="text" name="slug" class="form-control @error('slug') is-invalid @enderror"
-        id="slug" value = '{{ old('slug',$posts->slug) }}'  required readonly>
+        id="slug" value = '{{ old('slug',$posts->slug) }}' readonly required>
         <label for="slug"></label>
         @error('slug')
             <div class="invalid-feedback">
@@ -42,5 +39,5 @@
     </div>
     <button class="w-100 btn btn-lg btn-primary mt-5" type="submit">Update</button>
 </form>
-    
+
 @endsection
