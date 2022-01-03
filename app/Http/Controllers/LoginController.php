@@ -32,7 +32,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Authentication passed...
-            return redirect()->intended('/login');
+            return redirect()->intended('/posts');
         }
     }
 

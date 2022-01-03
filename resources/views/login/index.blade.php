@@ -18,9 +18,7 @@
                 <h1 class="h3 mb-3 fw-normal text-center">Login :</h1>
                 <form action='/login' method='post'>
                     @csrf
-                    {{-- csrf = pengamanan --}}
                     <div class="form-floating">
-                        {{-- autofocus=set langsung aktif --}}
                         <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
                         id="email" placeholder="Email" value = '{{ old('email') }}' required>
                         <label for="email">Email address</label>
