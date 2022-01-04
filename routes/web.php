@@ -10,12 +10,16 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', 'Controller@index');
 
 Route::get('/login', 'LoginController@index')->middleware('guest');
 Route::post('/login', 'LoginController@authenticate')->middleware('guest');
 
 Route::get('/logout', 'LoginController@logout');
+
+Route::get('/ticket', 'TicketController@index')->middleware('auth');
+Route::post('/ticket', 'TicketController@create')->middleware('auth');
 
 Route::get('/register', 'RegisterController@index')->middleware('guest');
 Route::post('/register', 'RegisterController@store')->middleware('guest');

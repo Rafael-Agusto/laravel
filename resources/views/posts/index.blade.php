@@ -1,5 +1,11 @@
 @extends('layouts.main')
 @section('container')
+@if(session()->has('success'))
+<div class="alert alert-success alert-dismissible fade show my-3" role="alert">
+    {{ session('success') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif 
 <div class="mx-5 my-2">
     <form action="submit">
         <a href="export">Download Data Excel</a>

@@ -18,6 +18,10 @@
           <a class="nav-link active text-white" aria-current="page" href="/posts/create">Create Post</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link active text-white" aria-current="page" href="/ticket">Request Content</a>
+        </li>
+        </li>
+        <li class="nav-item">
           <a class="nav-link active text-white" aria-current="page" href="/dashboard">Dashboard</a>
         </li>
         @endif
