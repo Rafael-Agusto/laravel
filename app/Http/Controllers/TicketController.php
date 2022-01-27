@@ -25,7 +25,6 @@ class TicketController extends BaseController
             "requests" => Requests::where('karyawan_id','=', null)->get(),
             "karyawan" => User::where('role_id','=',2)->get()
         ]);
-
     }
 
     public function myticket(){
@@ -36,11 +35,11 @@ class TicketController extends BaseController
 
     public function assign(Request $request){
         $validatedData = $request->validate([
-            'karyawan_id'=>'required|integer'
+            'id'=>'required',
+            'karyawan_id'=>'required'
         ]);
-        dd($validatedData);
         $validatedData['status']='Assigned';
-        requests::where('id','=', $validatedData['id'])->update($validatedData);
+        Requests::where('id','=', $validatedData['id'])->update($validatedData);
         return redirect('/manage-ticket')->with('success','Request has been assigned');
     }
 
@@ -49,7 +48,6 @@ class TicketController extends BaseController
             'judul'=>['required','min:3','max:32',],
             'deskripsi'=>'required',
         ]);
-
         $validatedData['status']="Listed";
         $validatedData['user_id']=auth()->user()->id;
         Requests::create($validatedData);

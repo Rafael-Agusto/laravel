@@ -6,9 +6,9 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
-@foreach ($requests as $req)
 <div class="mx-4 my-2 col-md-10 content-center ">
-    <div class="card-group">
+@foreach ($requests as $req)
+    <div class="card-group my-4">
         <div class="card bg-color:primary">
             <div class="card-body">
                 <h4 class="card-title">{{ $req->judul }}</h4>
@@ -18,8 +18,9 @@
                 <h4>{{ $req->karyawan_id }}</h4>
                 <form action="/manage-ticket" method="post">
                     @csrf
+                    <input type="hidden" name="id" id="id" value="{{$req->id}}">
                     <div class="dropdown mt-1">
-                        <select class="form-select" aria-label="Default select example">
+                        <select name="karyawan_id" id="karyawan_id" class="form-select" aria-label="Default select example">
                             <option selected>Pilih Karyawan</option>
                             @foreach ($karyawan as $kar)
                             <option value="{{$kar->id}}">{{$kar->name}}</option>
