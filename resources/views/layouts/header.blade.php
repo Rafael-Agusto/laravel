@@ -20,9 +20,11 @@
         <li class="nav-item">
           <a class="nav-link active text-white" aria-current="page" href="/ticket">Request Content</a>
         </li>
+        <li>
+            <a class="nav-link active text-white" aria-current="page" href="/manage-ticket">Assign Ticket</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page" href="/dashboard">Dashboard</a>
+        <li>
+            <a class="nav-link active text-white" aria-current="page" href="/my-ticket">Ticket</a>
         </li>
         @endif
       </ul>

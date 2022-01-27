@@ -11,6 +11,8 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use App\Http\Middleware\admin;
+use App\Http\Middleware\karyawan;
 
 class RegisterController extends Controller
 {
@@ -27,7 +29,6 @@ class RegisterController extends Controller
             'email'=>'required|email|unique:users,email',
             'password'=>'required|min:6'
         ]);
-
         $validatedData['password'] = bcrypt($request->password);
 
         // $data=([
@@ -37,9 +38,9 @@ class RegisterController extends Controller
 
         $email = $request->get('email');
         // Mail::to($email)->send(new WelcomeMail($data));
-        
-        $test=Mail::send('emails.welcome',  $validatedData, function ($mail) use ($email) {             
-            $mail->to($email, 'no-reply')->subject('Information Account');            
+
+        $test=Mail::send('emails.welcome',  $validatedData, function ($mail) use ($email) {
+            $mail->to($email, 'no-reply')->subject('Information Account');
             $mail->from('111201911661@mhs.dinus.ac.id', 'testlaravel');
         });
 

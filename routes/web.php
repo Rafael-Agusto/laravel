@@ -21,6 +21,11 @@ Route::get('/logout', 'LoginController@logout');
 Route::get('/ticket', 'TicketController@index')->middleware('auth');
 Route::post('/ticket', 'TicketController@create')->middleware('auth');
 
+Route::get('/manage-ticket', 'TicketController@show')->middleware('admin');
+Route::post('/manage-ticket', 'TicketController@assign')->middleware('admin');
+
+Route::get('/my-ticket', 'TicketController@myticket')->middleware('karyawan');
+
 Route::get('/register', 'RegisterController@index')->middleware('guest');
 Route::post('/register', 'RegisterController@store')->middleware('guest');
 

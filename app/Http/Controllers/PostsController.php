@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Posts;
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Middleware\admin;
+use App\Http\Middleware\karyawan;
 
 class PostsController extends Controller
 {
@@ -59,6 +61,7 @@ class PostsController extends Controller
             'slug'=>'required',
             'isi'=>'required|min:6|max:255'
         ]);
+
         posts::where('slug','=', $validatedData['slug'])->update($validatedData);
         return redirect('/mypost')->with('success','Edit Berhasil');
     }

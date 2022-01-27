@@ -6,22 +6,19 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
-<div class="mx-5 my-2">
-    <form action="submit">
-        <a href="export">Download Data Excel</a>
-    </form>
-    <form action="submit">
-        <a href="/posts/pdf">Download Data PDF</a>
-    </form>
-</div>
-@foreach ($posts as $post)
+<h4 class="centered">Assignment</h4>
+@foreach ($requests as $req)
+
 <div class="mx-4 my-2 col-md-10 content-center ">
     <div class="card-group">
         <div class="card bg-color:primary">
             <div class="card-body">
-                <h5 class="card-title">{{ $post->judul }}</h5>
-                <small>by {{ $post->user->name }}</small>
-                <h4>{{ $post->isi }}</h4>
+                <form action="">
+                    @csrf
+                    <h4 class="card-title">{{ $req->judul }}</h4>
+                    <small>Requested by {{ $req->user->name }}</small>
+                    <h4 class="mb-2">{{ $req->deskripsi }}</h4>
+                </form>
             </div>
         </div>
     </div>
